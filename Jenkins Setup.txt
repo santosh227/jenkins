@@ -1,0 +1,57 @@
+Jenkins Setup Guide 
+
+Step 1: Create EC2 Server
+Launch Amazon Linux EC2 instance
+
+Configure security group with ports 22 (SSH) and 8080 (Jenkins)
+
+Step 2: Connect to AWS Linux
+bash
+ssh -i /path/to/your-key.pem ec2-user@your-public-ip
+Step 3: Install Java and Jenkins (Official Commands)
+bash
+# Update system
+sudo yum update -y
+
+# Install Java
+sudo yum install java-17-amazon-corretto-devel -y
+
+# Add Jenkins repository
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+
+# Import Jenkins key
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+
+# Install Jenkins
+sudo yum install jenkins -y
+
+# Start Jenkins
+sudo systemctl start jenkins
+sudo systemctl enable jenkins
+Step 4: Visit Jenkins Online
+Navigate to: http://your-ec2-public-ip:8080
+
+Step 5: Get Jenkins Administrator Password
+bash
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+Copy the password and paste it in the Jenkins UI.
+
+Step 6: Install Suggested Plugins
+Click "Install suggested plugins" when prompted in the Jenkins setup wizard.
+
+Step 7: Create Admin Account
+Fill in the admin user creation form with your details:
+
+Username
+
+Password
+
+Full name
+
+Email address
+
+Step 8: Instance Configuration
+Confirm Jenkins URL: http://your-public-ip:8080/
+
+Step 9: Docker Agent Setup (Future Work)
+This step will be configured later for more efficient Jenkins operations using Docker containers as build agents.
