@@ -55,3 +55,50 @@ Confirm Jenkins URL: http://your-public-ip:8080/
 
 Step 9: Docker Agent Setup (Future Work)
 This step will be configured later for more efficient Jenkins operations using Docker containers as build agents.
+
+
+step 10 : installing docker , 
+
+Install Docker Commands -> 
+# 1. Update system packages
+sudo yum update -y
+
+# 2. Install Docker
+sudo yum install -y docker
+
+# 3. Start Docker service
+sudo service docker start
+
+step 11 --> I only install docker access to the roote user , but i need to access to the all users , so for that we have to install this commands in the same instance ,
+# 1. Update system
+sudo yum update -y
+
+# 2. Install Docker
+sudo yum install -y docker
+
+# 3. Start Docker service
+sudo service docker start
+
+# 4. Add ec2-user to docker group
+sudo usermod -a -G docker ec2-user
+
+# 5. Add jenkins to docker group (if you have Jenkins)
+sudo usermod -a -G docker jenkins
+
+# 6. Restart Docker service
+sudo systemctl restart docker
+
+# 7. Enable Docker to start at boot
+sudo systemctl enable docker
+
+After the commands are installed , then need to restart the Jenkins using in the web browser as 
+
+http://public-ip/restart --> it will restart the Jenkins automatically 
+
+
+step -12 : TO work with the docker as an agent in the Jenkins , we need to install the "docker pipeline " in the Jenkins which we can install in the   settings > plugins > available plugins > search for the docker pipeline and download it and restart the Jenkins 
+
+
+
+
+
